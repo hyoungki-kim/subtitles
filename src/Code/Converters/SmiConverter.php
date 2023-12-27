@@ -27,6 +27,7 @@ class SmiConverter implements ConverterContract
         $file_content = preg_replace('/>\s+</', '><', $file_content);
 
         $doc = new \DOMDocument();
+        $file_content = mb_convert_encoding($file_content, 'HTML-ENTITIES', "UTF-8");
         @$doc->loadHTML($file_content); // silence warnings about invalid html
 
         $syncElements = $doc->getElementsByTagName('sync');
